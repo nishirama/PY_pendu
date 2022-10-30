@@ -5,7 +5,7 @@ from tkinter import *
 
 # https://www.python-gui-builder.com/
 
-class main:
+#class main:
 
 root = Tk()
 
