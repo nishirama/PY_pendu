@@ -1,62 +1,68 @@
 panique
 arachide
+salle de bain
 katinga
 chien
 championnat
 Capricorne
 varicelle
-corruption
-crepuscule
+la corruption
+cr?puscule
 Solidifier
-platre
+pl?tre
 force
 galaxie
-recit
+r?cit
 magenta
 basilic
 menthe
-priere
+pi?ce de monnaie
+pri?re
+bonbons aux cacahu?tes
 mot
-macon
+ma?on
 pneumonie
 poumon
-rondpoint
-serenade
+rond point
+s?r?nade
 passeur
 trilogie
 Coupe
 allumer
 Filleul
-ruse
+rus?
 rugueux
 hanter
-Asterisque
+Ast?risque
 basketball
+petite route
 Champagne
-colle
-Prendre
+la colle
+Prends une douche
 lapin
-contexte
+le contexte
 coexister
+Coeur
 inhumain
-eloquent
+?loquent
 Sfiha
 rester
 exception
 fugace
 goroba
-sexe oppose
+sexe oppos?
 flipper
 Influence
-independant
-modernite
+ind?pendant
+la modernit?
 ophtalmologiste
-medecin
-paves
+m?decin ORL
+pav?s
+Pororoka
 pronostic
 isolement
-Chimere
-gouter
+Chim?re
+go?ter
 Signaler
 cloche
 taciturne
@@ -66,33 +72,33 @@ ami
 Amour
 oiseau
 avion
-grand-mere
+grand-m?re
 ballon
 boire
-gateau
+g?teau
 blanche
 lit
 tasse
 cellule
 club
 gazon
-Sucre
-Elephant
-ecole
+Sucr?
+?l?phant
+L'?cole
 trousse
 Couteau
 photo
 croix
-gelee
+gel?e
 girafe
-fenetre
+la fen?tre
 limonade
-Mere
-moitie
+M?re
+moiti?
 nuit
 Lunettes
 autobus
-pere
+p?re
 pain
 jardin
 oiseau
@@ -100,24 +106,24 @@ poisson
 pyjamas
 Souris
 nombril
-Baccalaureat
+Baccalaur?at
 Abracadabra
 Francophile
-Pandemonium
+Pand?monium
 Chlorophylle
-Metallurgie
-Metamorphose
-Montgolfiere
-Kaleidoscope
+M?tallurgie
+M?tamorphose
+Montgolfi?re
+Kal?idoscope
 Conquistador
 Conspirateur
 Rhododendron
 Qualification
 Protozoaire
-Quadrilatere
+Quadrilat?re
 Zygomatique
 Sorcellerie
-Belligerant
+Bellig?rant
 Acrostiche
 Apocalypse
 Attraction
@@ -128,7 +134,7 @@ Controverse
 Coquelicot
 Dissimuler
 Flibustier
-Forestiere
+Foresti?re
 Grenouille
 Impossible
 Labyrinthe
