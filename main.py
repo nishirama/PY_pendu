@@ -48,11 +48,11 @@ def updateLabel(letter):
     for i in indices:
         # https://stackoverflow.com/a/66424988
         motCache_list = list(motCache)
-        motCache_list[i] = letter.upper()
-        del motCache_list[i+1]
+        motCache_list[i*2-1] = letter.upper()
         motCache = ''.join(motCache_list)
 
     wordLabel.config(text=motCache)
+
 
 
 #_________________________________________________________________________________________________________________________________________________________________
@@ -221,6 +221,7 @@ motCache = "" # motMystere remplace par des underscores
 motCache=motCache+motMystere[0].upper()
 for letter in motMystere:
     motCache+="_ "
+motCache = motCache[:len(motCache)-2]
 if len(motMystere)>7:
     motCache = motCache[:11] + "\n" + motCache[11:] # On insert un saut de ligne pour ne pas que le mot depasse de la fenetre
 
