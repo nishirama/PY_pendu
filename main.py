@@ -64,11 +64,11 @@ def reglesUI():
 
 def gagneUI():
 
-"""
-affiche une fenetre en cas de victoire. Le boutton "rejouer" n'est pas fonctionel.
+    """
+    affiche une fenetre en cas de victoire. Le boutton "rejouer" n'est pas fonctionel.
     entree/sortie: rien
 
-"""
+    """
 
     fenetre = tk.Toplevel(root)
     fenetre.title("Gagné!")
