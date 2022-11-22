@@ -3,11 +3,11 @@
 # PY_pendu 
 ## ⚠Merci de bien lire cette présentation avant d'éxécuter le programme afin de comprendre les limites et les spécifications de ce dernier!⚠
 
-### - [Présentation]()
-### - [Fonctionalités]()
-### - [Version en ligne]()
-### - [Changelog]()
-### - [Limites]()
+### - [Présentation](https://github.com/DR34M-M4K3R/PY_pendu#pr%C3%A9sentation)
+### - [Fonctionalités](https://github.com/DR34M-M4K3R/PY_pendu#fonctionalites)
+### - [Version en ligne](https://github.com/DR34M-M4K3R/PY_pendu#version-en-ligne)
+### - [Changelog](https://github.com/DR34M-M4K3R/PY_pendu#changelog)
+### - [Limites](https://github.com/DR34M-M4K3R/PY_pendu#limites)
 
 ## Présentation
 
@@ -42,3 +42,6 @@ En effet, du fait des différences de versions entre l'environnement de dévelop
 Bien que nous avons concentrés notre maximum d'effort dans la réalisation du programme, la programmation n'est pas parfaite et présente des soucis (bugs) qui ne peuvent-êtres résolus à notre niveau par exemple, ou qui n'ont pas été détéctés. Cela est aussi du à un temps de développement donné, et donc aucun support sur le long-terme. Ces problèmes ne peuvent donc pas êtres résolus même après découverte.
 
 (La fonctionalité qui permet de rejouer est absente à cause d'un manque de temps)
+
+![Screenshot_20221122_230732](https://user-images.githubusercontent.com/67145585/203431239-4fb39102-9347-4d73-b13e-fbbe7ec6cd37.png)
+
