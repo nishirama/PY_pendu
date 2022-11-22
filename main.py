@@ -7,27 +7,135 @@ import re
 
 # -*- coding: utf-8 -*-
 
-buttons = []
-counter = 0 # si counter == 5: partie arretee (voir fonction 'checkWin')
+
+
+"""
+Ce programme fonctionne parfaitement sous ces specifications systeme:
+
+    -Verison python: Python 3.7.3
+    -Debian GNU/Linux 10 (buster)
+    -Version pip: pip 18.1
+
+L'execution avec 'EduPython' est deficiente, c'est pourquoi il est recommande d'utiliser la version en ligne disponible sur:
+
+                                 ________________________________________
+                                | https://replit.com/@DR34MM4K3R/PYpendu |
+                                 ________________________________________
+
+Code source: https://github.com/DR34M-M4K3R/PY_pendu
+Changelog: https://github.com/DR34M-M4K3R/PY_pendu/commits/main
+
+"""
 
 
 def reglesUI():
-    fenetre = Tk()
-    fenetre.title("Jérémie")
-    fenetre.geometry('350x400')
+    """
+    Affiche une fenetre 'toplevel' avec les regles du jeu.
+    entree/sortie: rien
+    """
+    fenetre = tk.Toplevel(root)
+    fenetre.title("Regles")
+    fenetre.geometry('360x300')
+
+
+    fenetre.withdraw()
+    fenetre.grid()
+    fenetre.grab_set()
+    fenetre.deiconify()
+
+    # Centrer la fenetre par rapport a 'root' --> https://stackoverflow.com/a/3353112
+    size = tuple(int(_) for _ in fenetre.geometry().split('+')[0].split('x'))
+    screen_width = fenetre.winfo_screenwidth()
+    screen_height = fenetre.winfo_screenheight()
+    x = screen_width/2 - size[0]/2
+    y = screen_height/2 - size[1]/2
+
+    fenetre.geometry("+%d+%d" % (x, y))
 
 
     # Texte de la fenetre (Regles du jeu)
-    texte1 = Label (fenetre, text = "Voici les règles du jeu :\n\n\n\nVous allez avoir un mot à trouver.\n\nVous disposerez d'un nombre de tentatives limités (5).\n\nVeuillez maintenant choisir le mode de jeu \n\ndans lequel vous désirez jouer.", width=70, height=13, anchor="w")
-    texte1.pack()
+    texte1 = Label (fenetre, text = "Voici les règles du jeu :\n\n\n\nVous allez avoir un mot à trouver.\n\nVous disposerez d'un nombre de tentatives limités (5).\n\nBonne chance.", width=70, height=13, anchor="w").pack()
 
-    # Bouton pour les deux modes de jeu
-    bouton1 = Button (fenetre, text = "Histoire")
-    Button(text="Histoire").pack()
+    fenetre.mainloop()
 
-    bouton2 = Button (fenetre, text = "Classique")
-    bouton2.pack()
 
+#_________________________________________________________________________________________________________________________________________________________________
+
+
+def gagneUI():
+
+"""
+affiche une fenetre en cas de victoire. Le boutton "rejouer" n'est pas fonctionel.
+    entree/sortie: rien
+
+"""
+
+    fenetre = tk.Toplevel(root)
+    fenetre.title("Gagné!")
+    fenetre.geometry('170x100')
+
+
+    fenetre.withdraw()
+    fenetre.grid()
+    fenetre.grab_set()
+    fenetre.deiconify()
+
+    # Centrer la fenetre par rapport a 'root' --> https://stackoverflow.com/a/3353112
+    size = tuple(int(_) for _ in fenetre.geometry().split('+')[0].split('x'))
+    screen_width = fenetre.winfo_screenwidth()
+    screen_height = fenetre.winfo_screenheight()
+    x = screen_width/2 - size[0]/2
+    y = screen_height/2 - size[1]/2
+
+    fenetre.geometry("+%d+%d" % (x, y))
+
+
+    btn = Button(fenetre, text = 'Terminer',command = root.destroy).grid(row=1,column=0)
+    btn = Button(fenetre, text = 'Rejouer',command = root.destroy).grid(row=1,column=1) # pas le temps de coder ca :(
+
+
+    # Texte de la fenetre (Regles du jeu)
+    texte1 = Label (fenetre, text = "Bravo!!\nVous avez gagné.", anchor="w").grid(row=0, column=0, columnspan=2)
+
+    fenetre.mainloop()
+
+
+#_________________________________________________________________________________________________________________________________________________________________
+
+
+
+def perduUI():
+    """
+    affiche une fenetre en cas de defaite. Le boutton "rejouer" n'est pas fonctionel.
+        entree/sortie: rien
+
+    """
+    fenetre = tk.Toplevel(root)
+    fenetre.title("Perdu!")
+    fenetre.geometry('257x100')
+
+
+    fenetre.withdraw()
+    fenetre.grid()
+    fenetre.grab_set()
+    fenetre.deiconify()
+
+    # Centrer la fenetre par rapport a 'root' --> https://stackoverflow.com/a/3353112
+    size = tuple(int(_) for _ in fenetre.geometry().split('+')[0].split('x'))
+    screen_width = fenetre.winfo_screenwidth()
+    screen_height = fenetre.winfo_screenheight()
+    x = screen_width/2 - size[0]/2
+    y = screen_height/2 - size[1]/2
+
+    fenetre.geometry("+%d+%d" % (x, y))
+
+
+    btn = Button(fenetre, text = 'Terminer',command = root.destroy).grid(row=1,column=0)
+    btn = Button(fenetre, text = 'Rejouer',command = root.destroy).grid(row=1,column=1) # pas le temps de coder ca :(
+
+
+    # Texte de la fenetre (Regles du jeu)
+    texte1 = Label (fenetre, text = ("Vous avez perdu :( Vous ferez mieux la \nprochaine fois!\n Vous avez trouvé ",lettresTrouvees," lettres!"), anchor="w").grid(row=0, column=0, columnspan=2)
 
     fenetre.mainloop()
 
@@ -41,10 +149,13 @@ def checkWin():
     entree: rien
     sortie: void
     """
+
     if counter==5:
         print("perdu")
-    elif motCache.replace(" ", "").replace("_", "").replace("\n", "")==motMystere.upper():
+        perduUI()
+    elif motCache.replace(" ", "").replace("_", "").replace("\n", "")==motMystere.upper().replace("\n", ""):
         print("gagne")
+        gagneUI()
 
     else:
         pass
@@ -110,14 +221,17 @@ def checkLetter(submittedLetter):
         entree: une variable String qui definit la lettre choisie par l'utilisateur
         sortie: void
     """
-
+    global lettresTrouvees
+    global nbessais
     i = 0
     letterFound=False
+    nbessais=nbessais+1
 
     for letter in motMystere:
         if letter==submittedLetter:
             letterFound=True
             updateLabel(letter)
+            lettresTrouvees=lettresTrouvees+1
         i = i+1
 
     if not letterFound:
@@ -188,7 +302,7 @@ def choixMot():
     """
     Cette fonction permet de selectionner un mot parmis la liste 'mots.txt'.
 
-    entree : integer 1>x>4 1 comme valeur pour mode simple, 2 pour mode complique, et 3 pour mode nightmare
+    entree : rien pour l'instant . Eventualite: integer 1>x>4 1 comme valeur pour mode simple, 2 pour mode complique, et 3 pour mode nightmare
     sortie : string contenant le mot mystere
 
     afin de remplacer les characteres accentues par des lettres normales pour faciliter
@@ -212,13 +326,17 @@ def choixMot():
 
 """
 
+buttons = []
+counter = 0 # si counter == 5: partie arretee (voir fonction 'checkWin')
+lettresTrouvees=0
+nbessais=0
 root = Tk()
 root.geometry('665x493')
 root.configure(background='#595959')
 root.title('Py Pendu')
 photo = PhotoImage(file = "src/icone/icone.png")
 root.iconphoto(False, photo)
-
+root.eval('tk::PlaceWindow . center')
 
 
 # Debut de creation de touches de clavier
@@ -231,7 +349,7 @@ al = "abcdefghijk"
 pha = "lmnopqrstuv"
 bet = "wxyz"
 
-root.focus_set()
+#root.focus_set()
 
 row = 1
 column=0
@@ -280,5 +398,5 @@ if len(motMystere)>7:
 
 wordLabel.config(text = motCache)
 
-
+reglesUI()
 root.mainloop()
