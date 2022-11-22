@@ -11,6 +11,44 @@ buttons = []
 counter = 0 # si counter == 5: partie arretee (voir fonction 'checkWin')
 
 
+def reglesUI():
+    fenetre = Tk()
+    fenetre.title("Jérémie")
+    fenetre.geometry('350x400')
+
+
+    # Texte de la fenetre (Regles du jeu)
+    texte1 = Label (fenetre, text = "Voici les règles du jeu :\n\n\n\nVous allez avoir un mot à trouver.\n\nVous disposerez d'un nombre de tentatives limités (5).\n\nVeuillez maintenant choisir le mode de jeu \n\ndans lequel vous désirez jouer.", width=70, height=13, anchor="w")
+    texte1.pack()
+
+    # Bouton pour les deux modes de jeu
+    bouton1 = Button (fenetre, text = "Histoire")
+    Button(text="Histoire").pack()
+
+    bouton2 = Button (fenetre, text = "Classique")
+    bouton2.pack()
+
+
+    fenetre.mainloop()
+
+
+#_________________________________________________________________________________________________________________________________________________________________
+
+def checkWin():
+
+    """
+    Cette fonction permet de verifier si l'utilisateur a gagne ou perdu
+    entree: rien
+    sortie: void
+    """
+    if counter==5:
+        print("perdu")
+    elif motCache.replace(" ", "").replace("_", "").replace("\n", "")==motMystere.upper():
+        print("gagne")
+
+    else:
+        pass
+
 #_________________________________________________________________________________________________________________________________________________________________
 
 def updatecanvas():
@@ -18,7 +56,7 @@ def updatecanvas():
     Cette fonction met a jour le canvas de l'UI avec les images apppropriees lorsque l'utilisateur fait une erreur.
     """
     global counter
-    images_pendu = []
+    images_pendu = [] # Il y a possibilite d'ajouter autant de versions differentes, il faut simplement respecter le format 1:1 (carre) et 5 images (ou plus mais il faut modifier le code)
     images_pendu.append("src/pendu_original/frame1.png")
     images_pendu.append("src/pendu_original/frame2.png")
     images_pendu.append("src/pendu_original/frame3.png")
@@ -44,12 +82,21 @@ def updateLabel(letter):
     # On cherche les indices de toutes les occurences de la lettre dans le mot pour pouvoir les afficher:
     indices = [index for index in range(len(motMystere)) if motMystere.startswith(letter, index)]
 
-
+    motCache_list = list(motCache)
     for i in indices:
         # https://stackoverflow.com/a/66424988
-        motCache_list = list(motCache)
-        motCache_list[i*2-1] = letter.upper()
+        if motCache_list[i*2-1]=="\n":
+            motCache_list[i*2] = letter.upper()
+
+        elif motCache_list[i*2-1]==" ":
+            motCache_list[i*2] = letter.upper()
+
+        else:
+            motCache_list[i*2-1] = letter.upper()
+
+
         motCache = ''.join(motCache_list)
+
 
     wordLabel.config(text=motCache)
 
@@ -76,6 +123,7 @@ def checkLetter(submittedLetter):
     if not letterFound:
         updatecanvas()
 
+    checkWin()
 #_________________________________________________________________________________________________________________________________________________________________
 
 
@@ -99,7 +147,7 @@ def keyPressed(letter, buttonIndex):
     entree: variable tkinter.Event
     sortie: void
 
-    python renvoie une variable "tkinter.Event", il
+    python renvoie une variable "tkinter.Event" (bug?), il
     faut alors la parser pour trouver et renvoyer le charactere souhaite.
     """
     event=str(letter)
@@ -113,11 +161,15 @@ def keyPressed(letter, buttonIndex):
     (sa place semble changer selon les versions de python alors il est necessaire de le parser pour etre sur):
     """
 
-
     charIndex=event.index("keysym=")+7
     """                              ^
     +7 pour trouver le charactere qui vient apres "k e y s y m ="
                                                    1 2 3 4 5 6 7
+
+    !! Attention !!: sur Edupython, la version de python ne renvoie pas du tout cet 'event', alors les entrees par touches de
+    clavier ne fonctionnent pas. C'est pour ca qu'il faut privilegier la configuration optimale decrite dans l'en-tete du fichier ci-present,
+    ou bien la version en ligne disponible sur www.repl.it
+    -Le clavier virtuel de l'UI reste operationel dans tous les cas.-
     """
     letterString=event[charIndex]
 
@@ -149,6 +201,7 @@ def choixMot():
         texte = liste.read()
         mots = list(map(str, texte.split()))
         mot = random.choice(mots)
+    print(mot)
     return mot
 
 
@@ -168,9 +221,7 @@ root.iconphoto(False, photo)
 
 
 
-
-
-# Début de création de touches de clavier
+# Debut de creation de touches de clavier
 """
 La creation des touches de clavier de l'interface est optimisee grace a trois boucles: une pour
 chaque rangee de lettres. Il faut alors diviser l'alphabet en trois. (variables "al", "pha", "bet") :
@@ -187,10 +238,10 @@ column=0
 i = 0
 for j in al, pha, bet:
     for letter in j:
-        b = Button(root, text=letter, bg='#353535', font=('verdana', 12, 'normal'), command=lambda l=letter, i=i : letterClicked(l, i))
+        b = Button(root, text=letter, bg='#353535', fg="white", font=('verdana', 12, 'normal'), command=lambda l=letter, i=i : letterClicked(l, i))
         b.grid(row=row, column=column, sticky='S', padx=10, pady=10)
         buttons.append(b)
-        root.bind(letter, lambda l = letter, i=i : keyPressed(l, i)) # on envoie l'event de la lettre appuyée
+        root.bind(letter, lambda l = letter, i=i : keyPressed(l, i)) # on envoie l'event de la lettre appuyee
         i = i+1
         column = column+1
 
@@ -209,7 +260,7 @@ container = penduCanvas.create_image(250, 0, anchor=NE, image=picture_file)
 penduCanvas.grid(row=0, column=0, columnspan=5, rowspan=1, padx=10, pady=10)
 
 # Label qui va permettre l'affichage du mot mystere
-wordLabel = Label (root, text = "test", font=('verdana', 40))
+wordLabel = Label (root, text = "test", font=('verdana', 40), background="#31363b")
 wordLabel.grid(row=0, column=5, columnspan=10, padx=10, pady=10, sticky='W')
 
 
@@ -220,13 +271,14 @@ motMystere=choixMot()
 motCache = "" # motMystere remplace par des underscores
 motCache=motCache+motMystere[0].upper()
 for letter in motMystere:
+    motMystere
     motCache+="_ "
 motCache = motCache[:len(motCache)-2]
 if len(motMystere)>7:
+    motMystere = motMystere[:11] + "\n" + motMystere[11:]
     motCache = motCache[:11] + "\n" + motCache[11:] # On insert un saut de ligne pour ne pas que le mot depasse de la fenetre
 
 wordLabel.config(text = motCache)
-print(motMystere)
 
 
 root.mainloop()

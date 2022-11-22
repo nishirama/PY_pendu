@@ -2,14 +2,14 @@
 
 from tkinter import *
 
-# Fenêtre et caractéristiques
+# Fenetre et caracteristiques
 fenetre = Tk()
 fenetre.title("Jérémie")
-fenetre.geometry('300x400')
+fenetre.geometry('350x400')
 
 
-# Texte de la fenêtre (Règles du jeu)
-texte1 = Label (fenetre, text = "Voici les règles du jeu :\n\n\n\nVous allez avoir un mot à trouver.\n\nVous disposerez d'un nombre de tentatives limités.\n\nVeuillez maintenant choisir le mode de jeu \n\ndans lequel vous désirez jouer.", width=70, height=13, anchor="w")
+# Texte de la fenetre (Regles du jeu)
+texte1 = Label (fenetre, text = "Voici les règles du jeu :\n\n\n\nVous allez avoir un mot à trouver.\n\nVous disposerez d'un nombre de tentatives limités (5).\n\nVeuillez maintenant choisir le mode de jeu \n\ndans lequel vous désirez jouer.", width=70, height=13, anchor="w")
 texte1.pack()
 
 # Bouton pour les deux modes de jeu
@@ -21,6 +21,3 @@ bouton2.pack()
 
 
 fenetre.mainloop()
-
-
-
